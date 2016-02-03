@@ -1,7 +1,11 @@
 class Monitor
 
-  def inspect
-  	if @clean_monitor == 0
+  def initialize
+    @clean = false
+  end
+
+  def close_inspect
+  	if !clean
   		puts "#{find_object(:monitor).description}"
   	else
   		puts "You read what is on the screen:"
@@ -63,5 +67,13 @@ class Monitor
   		end
   		end
   	end
+  end
+
+  def inspect
+    "A computer monitor on top of the computer. It is too dusty to read"
+  end
+
+  def to_s
+    "a monitor"
   end
 end
