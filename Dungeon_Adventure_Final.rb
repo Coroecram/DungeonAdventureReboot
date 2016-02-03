@@ -82,72 +82,12 @@ def initialize()
 	add_room(19, "a dark room with a door to the", [0,0,0,1], "computer", "monitor", "lamp", "platform")
 end
 
-
-
-
 def turn_phase
 	torch_burn
 	room_items
 	the_darkness
 	ghost_check
 end
-
-
-
-
-
-def room_items
-	@in_room = []
-	current_room = find_room(@room_place)
-	current_room.objects.each { |object| @in_room << object}
-	@in_room = @in_room.flatten
-	if @in_room == [nil]
-		@in_room = []
-	end
-end
-
-def items_room
-	current_room = find_room(@room_place)
-	current_room.objects = []
-	item_hold = []
-	@in_room.each { |object| item_hold << object}
-	current_room.objects = item_hold.flatten
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class Object
-    attr_accessor :reference, :name, :description, :optional
-    def initialize(reference, name, description, optional = 0)
-      @name = name
-	  	@reference = reference
-	  	@description = description
-	  	@optional = optional
-    end
-
-end
-
 
 end
 

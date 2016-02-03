@@ -104,3 +104,21 @@ def orienteering
 		@room_place -= 1
 	end
 end
+
+def room_items
+  @in_room = []
+  current_room = find_room(@room_place)
+  current_room.objects.each { |object| @in_room << object}
+  @in_room = @in_room.flatten
+  if @in_room == [nil]
+    @in_room = []
+  end
+end
+
+def items_room
+  current_room = find_room(@room_place)
+  current_room.objects = []
+  item_hold = []
+  @in_room.each { |object| item_hold << object}
+  current_room.objects = item_hold.flatten
+end
