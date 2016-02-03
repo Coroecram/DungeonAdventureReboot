@@ -54,7 +54,7 @@ def initialize()
 	# add_object(:monitor, "a monitor", "A computer monitor on top of the computer. It is too dusty to read")
 	# add_object(:mouse, "a mouse (computer)", "A plain-old 2-button computer mouse.")
 	# add_object(:canteen, "a canteen", "A half-full reusable water canteen.")
-	add_object(:matchbox, "a matchbox", "A strike-on-box with so many matches you can't run out.")
+	# add_object(:matchbox, "a matchbox", "A strike-on-box with so many matches you can't run out.")
 	add_object(:ghost, "a spooky ghost", "A terrifying ghost moaning and staring right at you!")
 	add_object(:cord, "a cord coming out of the hole", "A cord is sticking out of the mouse hole.")
 
