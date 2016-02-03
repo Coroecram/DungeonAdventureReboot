@@ -1,4 +1,5 @@
 class Monitor
+  attr_accessor :clean
 
   def initialize
     @clean = false
