@@ -9,6 +9,6 @@ class Ghost
   end
 
   def to_s
-    "a spooky ghost"
+    spooky  ? "a spooky ghost" : "a ghost"
   end
 end
