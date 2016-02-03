@@ -36,7 +36,7 @@ def initialize()
 	@cant_take = [:lamp, :litlamp, :computer, :monitor, :platform, :tree]
 
 #add objects
-	add_object(:book, "a magical book", "A black leather-bound book with a certain feel. There are no markings on it.\nYou open to the first page.")
+	# add_object(:book, "a magical book", "A black leather-bound book with a certain feel. There are no markings on it.\nYou open to the first page.")
 	add_object(:lamp, "a lamp", "A black metal lamp hanging on a post about 6 feet tall in the middle of the room.")
 	add_object(:litlamp, "a lamp burning brightly", "A black metal lamp hanging on a post about 6 feet tall burning brightly.")
 	add_object(:torch, "a torch", "A piece of wood with flammable resin inside.\nIt can be lit to provide a bright flame.")

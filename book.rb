@@ -26,4 +26,12 @@ class Book
   	puts "____________________________________________________________________________".center(80)
   	puts "Afraid to read on, you close the book."
   end
+
+  def inspect
+    "A black leather-bound book with a certain feel. There are no markings on it.\nYou open to the first page."
+  end
+
+  def to_s
+    "a magical book"
+  end
 end
