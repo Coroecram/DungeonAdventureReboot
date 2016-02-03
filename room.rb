@@ -22,6 +22,18 @@ class Room
   	end
   end
 
+  def take_keyboard_first
+  	if @in_room.any?{ |word| word == "keyboard"}
+  		@chest_opener == 2
+  		@in_room.delete("keyboard")
+  		@in_hands.push("keyboard")
+  		puts "You take the keyboard from the chest."
+  		find_object(:chest).description = "The chest is open and there is nothing but dust inside."
+  	else
+  		puts "That item is not around."
+  	end
+  end
+
   def inspect_room_doors
   	doorways = []
   	current_room = find_room(@room_place)

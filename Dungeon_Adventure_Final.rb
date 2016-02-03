@@ -83,17 +83,7 @@ def initialize()
 end
 
 
-def orienteering
-	if @orientation == 0
-		@room_place = @room_place + 5
-	elsif @orientation == 1
-		@room_place = @room_place + 1
-	elsif @orientation == 2
-		@room_place = @room_place - 5
-	elsif @orientation == 3
-		@room_place = @room_place - 1
-	end
-end
+
 
 def turn_phase
 	torch_burn
@@ -102,37 +92,9 @@ def turn_phase
 	ghost_check
 end
 
-def torch_burn
-	@lit_torches.each do |torch|
-		torch.timeleft -= 1
-		if torch.timeleft == 0
-			torch_identity = torch.identifier
-			torch_to_delete = "littorch#{torch_identity}"
-			if @in_hands.any? { |object| object == torch_to_delete }
-				@in_hands.delete_if {|object| object == torch_to_delete}
-				puts "The torch you are holding burnt out."
-			elsif @rooms.each do |room|
-				room_objects = room.objects.flatten
-				room_objects.delete_if{|object| object == torch_to_delete}
-				room.objects = room_objects
-			end
-			end
-		end
-	end
-@lit_torches.delete_if {|torch| torch.timeleft == 0 }
-end
 
-def take_keyboard_first
-	if @in_room.any?{ |word| word == "keyboard"}
-		@chest_opener == 2
-		@in_room.delete("keyboard")
-		@in_hands.push("keyboard")
-		puts "You take the keyboard from the chest."
-		find_object(:chest).description = "The chest is open and there is nothing but dust inside."
-	else
-		puts "That item is not around."
-	end
-end
+
+
 
 def room_items
 	@in_room = []

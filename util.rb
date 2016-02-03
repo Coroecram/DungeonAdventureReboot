@@ -92,3 +92,15 @@ def the_darkness
 		end
 	end
 end
+
+def orienteering
+	if @orientation == 0
+		@room_place += 5
+	elsif @orientation == 1
+		@room_place += 1
+	elsif @orientation == 2
+		@room_place -= 5
+	elsif @orientation == 3
+		@room_place -= 1
+	end
+end
