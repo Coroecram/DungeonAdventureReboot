@@ -1,5 +1,6 @@
 class Platform
-  def inspect
+
+  def close_inspect
   	traveler = @traveler.upcase
   	spaces = " " * ("#{@traveler} YOU HAVE COME A LO").length
   	if @platform_fixed == 0
@@ -26,5 +27,9 @@ class Platform
   		puts "THE CAT WILL FIND WHAT SCURRIES INSIDE.".center(80)
   		puts "GHOSTS FEAR THOSE WHO STAND BRAVELY!".center(80)
   	end
+  end
+
+  def inspect
+    "a stone platform with a fragment missing and a computer on top."
   end
 end
