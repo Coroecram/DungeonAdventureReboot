@@ -35,7 +35,7 @@ def initialize()
 	@error_count = 0
 	@cant_take = [:lamp, :litlamp, :computer, :monitor, :platform, :tree]
 
-	#adding objects
+#add objects
 	add_object(:book, "a magical book", "A black leather-bound book with a certain feel. There are no markings on it.\nYou open to the first page.")
 	add_object(:lamp, "a lamp", "A black metal lamp hanging on a post about 6 feet tall in the middle of the room.")
 	add_object(:litlamp, "a lamp burning brightly", "A black metal lamp hanging on a post about 6 feet tall burning brightly.")
@@ -58,7 +58,7 @@ def initialize()
 	add_object(:cord, "a cord coming out of the hole", "A cord is sticking out of the mouse hole.")
 	add_object(:littorch, "a bright flaming torch", "By the looks of it, the torch will burn for (x more movements)", 10)
 
-#adding rooms
+#add rooms
 	add_room('forest', "a clearing in the forest before a stone hill", [1,0,0,0], "book")
 	add_room(0, "a dark room with a door to the", [0,1,0,0], "fragment")
 	add_room(1, "a dark room with a door to the", [1,0,0,1], nil)
@@ -80,68 +80,9 @@ def initialize()
 	add_room(17, "a dark room with a door to the", [0,0,1,1], nil)
 	add_room(18, "a dark room with a door to the", [0,1,1,0], nil)
 	add_room(19, "a dark room with a door to the", [0,0,0,1], "computer", "monitor", "lamp", "platform")
-
 end
 
-def inputs(string)
-	if string == "pet cat"
-		pet_cat
-	elsif string =~(/.+lit torch/) || string =~(/.+littorch/)
-		command = string.split[0]
-		if @commands.any?  {|k, v| k == command}
-			command = @commands[command]
-		end
-		@subject = "littorch".to_sym
-		torch_parse(command)
-	elsif string =~(/.+lit lamp/) || string =~(/.+litlamp/)
-		command = string.split[0]
-		@subject = "litlamp".to_sym
-		command_parse(command)
-	elsif string.class == String && string.split.length == 2
-		command = string.split[0]
-		@subject = string.split[1]
-		command_parse(command)
-	else
-		puts "Please enter a valid command."
-		puts "[action] [object]"
-	end
-end
 
-def command_parse(inquiry)
-	if @commands.any?  {|k, v| k == inquiry}
-		inquiry = @commands[inquiry]
-		if inquiry == "move" || inquiry == "go"
-			move_command(@subject.to_s)
-		elsif @object_list.any?  {|k, v| k == @subject}
-			@subject = @object_list[@subject].to_sym
-			@error_count = 0
-			if inquiry == "take" || inquiry == "grab"
-				take_command(@subject)
-			elsif inquiry == "inspect"
-				inspect_command(@subject)
-			elsif inquiry == "put" || inquiry == "place" || inquiry == "drop"
-				put_command(@subject)
-			elsif inquiry == "clean" || inquiry == "wipe"
-					clean_command(@subject)
-			elsif inquiry == "light"
-				light_command(@subject)
-			end
-		else
-			if @error_count < 1
-				puts "Please enter a valid object. (#{inquiry} what?)"
-				@error_count += 1
-				@subject = gets.downcase.chomp
-				command_parse(inquiry)
-			else
-				puts "Please enter a valid command."
-				@error_count = 0
-			end
-		end
-	else
-		puts "That is not something you can do."
-		puts "Please enter a valid command"
-	end
-end
 
 def clean_command(object)
 	if object == :bag
