@@ -98,7 +98,7 @@ end
 def turn_phase
 	torch_burn
 	room_items
-	the_Darkness
+	the_darkness
 	ghost_check
 end
 
@@ -152,318 +152,28 @@ def items_room
 	current_room.objects = item_hold.flatten
 end
 
-def in_bag
-	@scope_bag = 1; @scope_hands = 0; @scope_room = 0
-	if @in_bag.length == 0
-		puts "There is nothing in your bag."
-	else
-		things = []
-		@in_bag.each {|object| things << find_object((object[/\D+/]).to_sym).name}
-		stuff_total = "You open the bag. There is " + things.join(" and ") + " in your bag."
-		puts stuff_total.scan(/.{1,80}\W/).map(&:strip)
-	end
-end
-
-def in_hand
-	@scope_hands = 1; @scope_bag = 0; @scope_room = 0
-	if @in_hands.length == 0
-		puts "There is nothing in your hands."
-	else
-		things = []
-		@in_hands.each {|object| things << find_object((object[/\D+/]).to_sym).name}
-		if things.length == 1
-			puts "There is " + things[0] + " in your hand."
-		else
-			puts "There is " + things.join(" and ") + " in your hands."
-		end
-	end
-end
-
-def in_room
-	@scope_room = 1;  @scope_bag = 0; @scope_hands = 0
-	if @in_room == []
-		inspect_room_doors
-		puts "There is nothing in the room."
-	else
-		things = []
-		inspect_room_doors
-		@in_room.each {|object| things << find_object((object[/\D+/]).to_sym).name}
-		stuff_total = "There is " + things.join(" and ") + " in the room."
-		puts stuff_total.scan(/.{1,80}\W/).map(&:strip)
-	end
-end
-
-def inspect_room_doors
-	doorways = []
-	current_room = find_room(@room_place)
-	doors_in_room = current_room.doors
-	orientationer = @orientation
-	doors_orient = doors_in_room.rotate(orientationer)
-	doorways << "straight" if doors_orient[0] == 1
-	doorways << "to the left" if doors_orient[3] == 1
-	doorways << "to the right" if doors_orient[1] == 1
-	doorways << "back behind you" if doors_orient[2] == 1
-	if doorways.length == 1
-		puts "It is a large cave chamber with a passage #{doorways[0]}."
-	else
-		doorways_total = doorways.join(", and ").to_s
-		doorway_output = "It is a large cave chamber with passages #{doorways_total}."
-		puts doorway_output.scan(/.{1,80}\W/).map(&:strip)
-	end
-end
-
-def inspect_book
-	puts "___________________________________________________________________________".center(80)
-	puts "Hello #{@traveler}, looking for some help?\n".center(80)
-	puts "Here's a list of some handy commands and a short description of what they do!\n".center(80)
-	puts "Type [command] [item or direction] and press ENTER".center(80)
-	puts "Command \t Description"
-	puts "move/go   Move your character in [direction].\n"
-	puts "inspect   Inspect an [object].\n\t  Inspect your bag, hands, or the room to manipulate the items in them.\n"
-	puts "take/grab Pick up an [item]."
-	puts "put/place Put down an [item] in your hands."
-	puts "light \t  Light  the [object] on fire (be careful!)."
-	puts "clean \t  Some [items] are dirty.\n\n"
-	puts "____________________________________________________________________________".center(80)
-	puts "Press <ENTER> to look at the facing page."
-	gets
-	puts "____________________________________________________________________________".center(80)
-	puts "Here are some helpful tips #{@traveler}!".center(80)
-	puts "Don't forget torches burn out, it is not safe to be lost in the dark!".center(80)
-	puts "You will always drop and pickup the most burnt torch first.".center(80)
-	puts "Branches can be taken as torches.".center(80)
-	puts "Do not use descriptors except for a 'lit' torch or lamp.".center(80)
-	puts "Unique abbreviations are acceptable.".center(80)
-	puts "Again, don't forget torches burn out, it is not safe to be lost in the dark!".center(80)
-	puts "Check how long your lit torches will last frequently!".center(80)
-	puts "____________________________________________________________________________".center(80)
-	puts "Afraid to read on, you close the book."
-end
-
-def inspect_tree(object)
-	puts "#{find_object(object).description}"
-end
-
-def inspect_keypad
-	puts "The keypad on the chest has the following buttons on it:"
-	puts "W  L  D  T  M"
-	puts " O  R  H  Y  "
-	puts "B  Q  E  S  U"
-	puts "Enter the password:"
-	password = gets.chomp
-	if password == "QWERTY"
-		puts "The keypad lights up green and an audible *click* is heard."
-		sleep(2)
-		puts "The keypad flips and disappears as the chest slowly opens automatically."
-		@chest_opener = 1
-		find_object(:chest).description = "The chest is open and there is a keyboard inside."
-		@in_room.push("keyboard")
-	else
-		puts "The keypad flashes red."
-	end
-end
-
-def inspect_platform
-	traveler = @traveler.upcase
-	spaces = " " * ("#{@traveler} YOU HAVE COME A LO").length
-	if @platform_fixed == 0
-		puts "There is a platform carved out of a rock big enough to put the computer on."
-		puts "Something is carved into its base, but a whole section is missing."
-		puts "Press <ENTER> to read it."
-		gets
-		puts"What is left says:"
-		puts "WELCO #{spaces}NG WAY".center(80)
-		puts "IF YO                          F THIS DUNGEON,".center(80)
-		puts "YOU MIG                              HAHAHA!".center(80)
-		puts "THE PASSWORD         ".center(45)
-		puts "T                     SCURRIES INSIDE.".center(80)
-		puts "GHOSTS                         VELY!".center(80)
-	else
-		puts "There is a platform carved out of a rock big enough to put the computer on."
-		puts "Something is carved into it's base and it says:"
-		puts "Press <ENTER> to read it."
-		gets
-		puts "WELCOME #{traveler} YOU HAVE COME A LONG WAY".center(80)
-		puts "IF YOU CAN SOLVE THE PUZZLES OF THIS DUNGEON,".center(80)
-		puts "YOU MIGHT JUST ESCAPE... OR NOT. MUAHAHAHAHA!".center(80)
-		puts "THE PASSWORD IS 'QWERTY'!".center(80)
-		puts "THE CAT WILL FIND WHAT SCURRIES INSIDE.".center(80)
-		puts "GHOSTS FEAR THOSE WHO STAND BRAVELY!".center(80)
-	end
-end
-
-def inspect_fragment
-	traveler = @traveler.upcase
-	puts "It is an irregularly shaped stone fragment with carvings that read:"
-	puts "     ME #{traveler} YOU HAVE COME A LO"
-	puts "     U CAN SOLVE THE PUZZLES O"
-	puts "      HT JUST ESCAPE... OR NOT. MUAHA"
-	puts "           IS 'QWERTY'!"
-	puts " HE CAT WILL FIND WHAT "
-	puts "       FEAR THOSE WHO STAND BRA"
-end
-
-def inspect_monitor
-	if @clean_monitor == 0
-		puts "#{find_object(:monitor).description}"
-	else
-		puts "You read what is on the screen:"
-		puts
-		while true
-		puts "Would you like to reboot? (Y/N)"
-		if @keyboard_connected == 1
-			input = gets.chomp.downcase
-			if input == "y"
-				puts "Rebooting................................................................"
-				sleep(3)
-				puts "Motherboard configuring.................................................."
-				sleep(5)
-				puts "Checking system configuration............................................"
-				sleep(6)
-				puts "Loading.................................................................."
-				sleep(4)
-				puts "Booting disk drive......................................................."
-				sleep(2)
-				if @disk_inserted == 1
-					puts "Click the mouse to run program."
-					if @mouse_connected == 1
-						sleep(5)
-						while true
-						puts "What are you waiting for? Click the mouse. (the old-fashioned way)"
-						input = gets.chomp.downcase
-							if input == "click mouse"
-								new_adventure = Adventure.new
-								new_adventure.intro
-							elsif input == "no"
-								puts "But you were so close..."
-								puts "You step away from the monitor."
-								break
-							end
-						end
-					else
-						sleep(3)
-						puts "You don't have a mouse to click."
-						puts "You step away from the monitor."
-						break
-					end
-				else
-					sleep(5)
-					puts "There is no disk in the drive."
-					puts "You step away from the monitor."
-					break
-				end
-			elsif input == "n"
-				puts "You step away from the monitor."
-				break
-			else
-				inspect monitor
-			end
-		else
-			sleep(3)
-			puts "You don't have anything to input with."
-			puts "You step away from the monitor."
-			break
-		end
-		end
-	end
-end
-
-def cat_room_check
-	if @room_place == 4 && @in_room.any? { |object| object == "cat" }
-		sleep(2)
-		puts "The cat starts to creep over to the hole in the wall."
-		sleep(3)
-		puts "The cat puts its head into the hole..."
-		sleep(3)
-		puts "Suddenly a mouse runs out and the cat chases it out of the room!"
-		@mouse_in_hole == 0
-		@in_room.delete("cat")
-		room_hole = find_object(:hole)
-		room_hole.description = "There is a small cord coming out of the hole where the mouse ran out."
-		@in_room.push("cord")
-	end
-end
-
-def put_final_room(object)
-	if object == :mouse
-		puts "You walk over to the computer and plug in the #{object.to_s}."
-		@cant_take.push(object)
-		@in_room.insert(1, object.to_s)
-		@in_hands.delete(object.to_s)
-		@mouse_connected = 1
-	elsif object == :keyboard
-		puts "You walk over to the computer and plug in the #{object.to_s}."
-		@cant_take.push(object)
-		@in_room.insert(1, object.to_s)
-		@in_hands.delete(object.to_s)
-		@keyboard_connected = 1
-	elsif object == :disk
-		puts "You walk over to the computer and insert the disk."
-		@in_hands.delete("disk")
-		@disk_inserted = 1
-		find_object(:computer).description = "An old computer with a floppy disk in it. It is still running"
-	elsif object == :fragment
-		puts "You walk over to the platform and put in the fragment."
-		@in_hands.delete("fragment")
-		@platform_fixed = 1
-	end
-end
-
-def ghost_check
-	if @room_place == 15 && @in_room.any? { |thing| thing == "ghost"}
-		puts "There is a super spooky ghost in this room!"
-		puts "It is a green-glowing full-bodied apparition, and IT'S COMING RIGHT AT YOU!!"
-		begin
-			input = ""
-			input = Timeout::timeout(10){ gets.chomp }
-			rescue Timeout::Error
-				puts "You have stood courageously!"
-
-		end
-				if input == "move back" || input == "go back"
-					inputs(input)
-				elsif input != ""
-					puts "You are too frightened to do anything but run away!"
-					inputs("move back")
-				else
-					sleep(2)
-					puts "The ghost slowly fades away with a moan..."
-					@in_room.replace(["litlamp", "disk"])
-					@in_room.delete("ghost")
-					sleep(2)
-					puts "The lamp goes aflame as if by magic!"
-					puts "There is the sound of something plastic hitting the ground."
-				end
-	end
-end
-
-def abbrev_check(input)
-	if input != nil
-		if input.split.length == 2
-			input1 = input.split[0]
-			input2 = input.split[1]
-		else
-			input1 = "garbage"
-			input2 = "garbage"
-		end
-		if @commands.any?  {|k, v| k == input1}
-			input1 = @commands[input1]
-		else
-			input1 == "garbage"
-		end
-		if (input1 == "go" || input1 == "move") && @valid_move.any? {|k, v| k == input2}
-			input2 = @valid_move[input2]
-		elsif @object_list.any?  {|k, v| k == input2}
-			input2 = @object_list[input2]
-		else
-			input2 = "garbage"
-		end
-	return input1 + " " + input2
-	end
-end
 
 
-def the_Darkness
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def the_darkness
 	if @in_hands.any? { |object| object =~ /lit.*/ } || @in_room.any? { |object| object =~ /lit.*/ }
 		@darkness_tries = 1
 	else
@@ -531,9 +241,9 @@ class Object
     attr_accessor :reference, :name, :description, :optional
     def initialize(reference, name, description, optional = 0)
       @name = name
-	  @reference = reference
-	  @description = description
-	  @optional = optional
+	  	@reference = reference
+	  	@description = description
+	  	@optional = optional
     end
 
 end
@@ -549,47 +259,7 @@ class Lit_torch
 	end
 end
 
-class Room
-	attr_accessor :reference, :description, :doors, :objects
 
-    def initialize(reference, description, doors, *objects)
-	  @reference = reference
-	  @description = description
-	  @doors = doors
-	  @objects = objects
-    end
-end
-
-def add_room(reference, description, doors, *objects)
-	@rooms << Room.new(reference, description, doors, objects)
-end
-
-def add_object(reference, name, description, optional = 0)
-	@objects << Object.new(reference, name, description, optional)
-end
-
- def find_object(reference)
-    @objects.detect { |object| object.reference == reference }
- end
-
-def find_room(reference)
-    @rooms.detect { |room| room.reference == reference }
-end
-
- def find_torch(identifier)
-	if identifier == nil
-	else
-		@lit_torches.detect { |torch| torch.identifier == identifier }
-	end
-end
-
-  def find_bag(reference)
-    @in_bag.detect { |object| object.reference == reference }
- end
-
-def find_hands(reference)
-   @in_hands.detect { |object| object.reference == reference }
-end
 
 
 end

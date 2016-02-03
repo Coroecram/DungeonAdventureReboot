@@ -57,3 +57,28 @@ def command_parse(inquiry)
 		puts "Please enter a valid command"
 	end
 end
+
+def abbrev_check(input)
+	if input != nil
+		if input.split.length == 2
+			input1 = input.split[0]
+			input2 = input.split[1]
+		else
+			input1 = "garbage"
+			input2 = "garbage"
+		end
+		if @commands.any?  {|k, v| k == input1}
+			input1 = @commands[input1]
+		else
+			input1 == "garbage"
+		end
+		if (input1 == "go" || input1 == "move") && @valid_move.any? {|k, v| k == input2}
+			input2 = @valid_move[input2]
+		elsif @object_list.any?  {|k, v| k == input2}
+			input2 = @object_list[input2]
+		else
+			input2 = "garbage"
+		end
+	return input1 + " " + input2
+	end
+end
