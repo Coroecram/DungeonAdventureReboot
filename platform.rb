@@ -32,4 +32,8 @@ class Platform
   def inspect
     "a stone platform with a fragment missing and a computer on top."
   end
+
+  def to_s
+    "a stone platform"
+  end
 end
