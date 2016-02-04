@@ -7,7 +7,7 @@ RSpec.describe Bag do
       end
     end
     describe '#to_s' do
-      it 'returns the bag description' do
+      it 'returns the bag string' do
         expect(Bag.new.to_s).to eq("A worn black leather messenger bag, big enough to hold a few items.")
       end
     end

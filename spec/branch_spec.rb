@@ -7,7 +7,7 @@ RSpec.describe Branch do
       end
     end
     describe '#to_s' do
-      it 'returns the branch name' do
+      it 'returns the branch string' do
         expect(Branch.new.to_s).to eq("a tree branch")
       end
     end
