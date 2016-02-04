@@ -8,18 +8,15 @@ class Room
   	  @objects = objects
       end
 
-  def in_room
-  	@scope_room = 1;  @scope_bag = 0; @scope_hands = 0
-  	if @in_room == []
-  		inspect_room_doors
-  		puts "There is nothing in the room."
-  	else
-  		things = []
-  		inspect_room_doors
-  		@in_room.each {|object| things << find_object((object[/\D+/]).to_sym).name}
-  		stuff_total = "There is " + things.join(" and ") + " in the room."
-  		puts stuff_total.scan(/.{1,80}\W/).map(&:strip)
-  	end
+  def inspect
+  	 "There is nothing in the room."
+  	# else
+  	# 	things = []
+  	# 	inspect_room_doors
+  	# 	@in_room.each {|object| things << find_object((object[/\D+/]).to_sym).name}
+  	# 	stuff_total = "There is " + things.join(" and ") + " in the room."
+  	# 	puts stuff_total.scan(/.{1,80}\W/).map(&:strip)
+  	# end
   end
 
   def take_keyboard_first
