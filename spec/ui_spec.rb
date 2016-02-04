@@ -1,14 +1,14 @@
 require 'ui'
 
-RSpec.describe Ui do
+RSpec.describe UI do
     describe '#inspect' do
       it 'returns the object description' do
-        expect(Ui.new.inspect).to eq(			elsif inquiry == "put" || inquiry == "place" || inquiry == "drop")
+        expect(UI.new.inspect).to eq()
       end
     end
     describe '#to_s' do
       it 'returns the object name' do
-        expect(Ui.new.to_s).to eq(			@error_count = 0)
+        expect(UI.new.to_s).to eq()
       end
     end
 end
