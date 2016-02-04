@@ -1,8 +1,5 @@
 class Cord
-
-  def initialize
-  end
-
+  
   def inspect
     "a cord coming out of the hole"
   end

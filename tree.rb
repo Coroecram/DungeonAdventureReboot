@@ -1,8 +1,5 @@
 class Tree
 
-	def initialize
-	end
-
 	def inspect
 		"There is a large dead tree with many branches that look like they can burn.\nWho knows how it got here?"
 	end

@@ -1,7 +1,5 @@
 class Keyboard
-  def initialize
-  end
-
+  
   def inspect
     "A standard QWERTY keyboard."
   end

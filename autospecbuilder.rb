@@ -9,7 +9,9 @@ spec_folder = "#{Dir.getwd}/spec"
 def spec_builder(basename, inspect, to_s)
   proper_name = basename.to_s[0..-4]
   class_name = proper_name.capitalize
-  tests = "RSpec.describe #{class_name} do
+  tests = "'require ../#{basename}'
+  
+RSpec.describe #{class_name} do
     describe '#inspect' do
       it 'returns the object description' do
         expect(#{class_name}.new.inspect).to eq(#{inspect})

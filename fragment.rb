@@ -1,6 +1,4 @@
 class Fragment
-	def initialize
-	end
 
 	def close_inspect(travler)
 		traveler = traveler.upcase
