@@ -1,4 +1,4 @@
-class UI
+module UI
 	def inputs(string)
 		if string == "pet cat"
 			pet_cat
