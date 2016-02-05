@@ -1,7 +1,7 @@
 class Hand
   attr_accessor :contents
 
-  def initialize(contents)
+  def initialize(contents = [])
     @contents = contents
   end
 
@@ -17,7 +17,7 @@ class Hand
   	end
   end
 
-  def to_s
+  def inspect
     "Your good ole' reliable hands."
   end
 end
