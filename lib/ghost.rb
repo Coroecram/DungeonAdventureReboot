@@ -1,4 +1,5 @@
 class Ghost
+  attr_reader :spooky
 
   def initialize
     @spooky = true
