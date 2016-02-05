@@ -1,10 +1,19 @@
-class Monitor
+class ComputerMonitor
   attr_accessor :clean
 
   def initialize
     @clean = false
   end
 
+  def inspect
+    "A computer monitor on top of the computer. It is too dusty to read"
+  end
+
+  def to_s
+    "a monitor"
+  end
+
+=begin
   def close_inspect
   	if !clean
   		puts "#{find_object(:monitor).description}"
@@ -69,12 +78,7 @@ class Monitor
   		end
   	end
   end
+=end
 
-  def inspect
-    "A computer monitor on top of the computer. It is too dusty to read"
-  end
 
-  def to_s
-    "a monitor"
-  end
 end
