@@ -1,12 +1,11 @@
 class Torch
-	attr_reader :reference, :name, :description, :timeleft, :identifier, :lit
+	@@identifier = 0
+	attr_accessor :timeleft, :lit
+	attr_reader :identifier
 
-	def initialize(reference, name, timeleft = 10, description,  identifier)
-	  @reference = reference
-	  @name = name
-	  @timeleft = timeleft
-	  @description = description
-	  @identifier = identifier
+	def initialize
+	  @timeleft = 10
+	  @identifier = (@@identifier += 1)
     @lit = false
 	end
 
