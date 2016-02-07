@@ -1,9 +1,11 @@
 require 'flammable'
 
 class Lamp < Flammable
-  attr_reader :lit
+  attr_accessor :lit
+
   def initialize
     @lit = false
+    super
   end
 
   def inspect
