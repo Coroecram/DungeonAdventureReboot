@@ -5,7 +5,7 @@ RSpec.describe Torch do
     @torch = Torch.new
   end
   describe 'Flammable::Torch' do
-    it 'inehrits from Flammable' do
+    it 'inherits from Flammable' do
       expect(@torch.kind_of?(Flammable)).to eq(true)
     end
     it 'is flammable' do

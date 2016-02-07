@@ -1,4 +1,4 @@
-require 'flammable'
+require 'torch'
 
 class Branch < Flammable
 
