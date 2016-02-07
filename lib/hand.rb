@@ -17,7 +17,7 @@ class Hand
   	end
   end
 
-  def inspect
+  def to_s
     "Your good ole' reliable hands."
   end
 end
