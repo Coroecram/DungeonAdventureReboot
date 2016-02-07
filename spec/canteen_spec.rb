@@ -4,6 +4,11 @@ RSpec.describe Canteen do
   before(:all) do
     @canteen = Canteen.new
   end
+    describe '@swigs' do
+      it 'returns the canteen string' do
+        expect(@canteen.swigs).to eq(3)
+      end
+    end
     describe '#inspect' do
       it 'returns the canteen description' do
         expect(@canteen.inspect).to eq("A half-full reusable water canteen.")

@@ -2,7 +2,7 @@ class Canteen
   attr_accessor :swigs
 
   def initialize
-    @swigs = 2
+    @swigs = 3
   end
 
   def inspect
