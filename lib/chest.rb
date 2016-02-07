@@ -5,11 +5,15 @@ class Chest
     @locked = true
   end
 
+  def unlock
+    self.locked = false
+  end
+
   def inspect
-    locked ? "A large locked wooden chest with a keypad on it." : ""
+    return self.locked ? "A large locked wooden chest with a keypad on it." : "huh"
   end
 
   def to_s
-    locked ? "a large wooden treasure chest" : ""
+    return self.locked ? "a large wooden treasure chest" : "not true"
   end
 end
