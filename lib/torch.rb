@@ -11,19 +11,6 @@ class Torch < Flammable
 
   def burn
   		self.timeleft > 0 ? self.timeleft -= 1 : self.dead
-  		# if self.timeleft == 0
-  		# 	torch_identity = self.identifier
-  		# 	torch_to_delete = "littorch#{torch_identity}"
-  		# 	if @in_hands.any? { |object| object == torch_to_delete }
-  		# 		@in_hands.delete_if {|object| object == torch_to_delete}
-  		# 		puts "The torch you are holding burnt out."
-  		# 	elsif @rooms.each do |room|
-  		# 		room_objects = room.objects.flatten
-  		# 		room_objects.delete_if{|object| object == torch_to_delete}
-  		# 		room.objects = room_objects
-  		# 	end
-  		# 	end
-  		# end
   end
 
 	def dead
