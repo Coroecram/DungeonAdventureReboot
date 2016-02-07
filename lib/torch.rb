@@ -1,16 +1,15 @@
 require 'flammable'
 
 class Torch < Flammable
-	attr_accessor :timeleft, :lit
+	attr_accessor :timeleft
 
 	def initialize
 	  @timeleft = 10
-    @lit = false
 		super
 	end
 
   def burn
-  		self.timeleft > 0 ? self.timeleft -= 1 : self.dead
+  	self.timeleft > 0 ? self.timeleft -= 1 : self.dead
   end
 
 	def dead

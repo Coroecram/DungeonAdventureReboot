@@ -1,4 +1,6 @@
-class Branch
+require 'flammable'
+
+class Branch < Flammable
 
   def inspect
     "A branch; it looks like it could be taken and used as a torch."

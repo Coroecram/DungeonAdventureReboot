@@ -1,10 +1,8 @@
 require 'flammable'
 
 class Lamp < Flammable
-  attr_accessor :lit
 
   def initialize
-    @lit = false
     super
   end
 
