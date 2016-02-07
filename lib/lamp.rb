@@ -1,4 +1,6 @@
-class Lamp
+require 'flammable'
+
+class Lamp < Flammable
   attr_reader :lit
   def initialize
     @lit = false

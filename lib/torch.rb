@@ -1,4 +1,6 @@
-class Torch
+require 'flammable'
+
+class Torch < Flammable
 	@@identifier = 0
 	attr_accessor :timeleft, :lit
 	attr_reader :identifier
@@ -7,6 +9,7 @@ class Torch
 	  @timeleft = 10
 	  @identifier = (@@identifier += 1)
     @lit = false
+		super
 	end
 
   def burn
