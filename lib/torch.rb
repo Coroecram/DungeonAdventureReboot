@@ -14,7 +14,7 @@ class Torch < Flammable
 
 	def dead
 		!self.lit ||= false
-		return self.timeleft == 0
+		return nil if self.timeleft == 0
 	end
 
   def inspect
