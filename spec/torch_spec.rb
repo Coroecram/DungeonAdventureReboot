@@ -14,4 +14,37 @@ RSpec.describe Torch do
         expect(@torch.to_s).to eq("a torch")
       end
     end
+    describe '@@identifier' do
+      it 'new torch has identifier += 1' do
+        expect(Torch.new.identifier).to eq(@torch.identifier+1)
+      end
+    end
+    describe '@timeleft' do
+      it '@timeleft == 10' do
+        expect(@torch.timeleft).to eq(10)
+      end
+    end
+    describe '#burn' do
+      before(:each) do
+        @torch = Torch.new
+      end
+      it 'timeleft -= 1 when torch burns' do
+        @torch.burn
+        expect(@torch.timeleft).to eq(9)
+      end
+      it "should die after 10 burns" do
+        burnout
+        expect(@torch.dead).to eq(true)
+      end
+      it "should not be lit after 10 burns" do
+        burnout
+        expect(@torch.lit).to eq(false)
+      end
+    end
+
+
+end
+
+def burnout
+  10.times { @torch.burn }
 end

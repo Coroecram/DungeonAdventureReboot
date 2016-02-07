@@ -10,7 +10,7 @@ class Torch
 	end
 
   def burn
-  		self.timeleft -= 1
+  		self.timeleft > 0 ? self.timeleft -= 1 : self.dead
   		# if self.timeleft == 0
   		# 	torch_identity = self.identifier
   		# 	torch_to_delete = "littorch#{torch_identity}"
@@ -25,6 +25,11 @@ class Torch
   		# 	end
   		# end
   end
+
+	def dead
+		!self.lit ||= false
+		return self.timeleft == 0
+	end
 
   def inspect
     lit ?  "By the looks of it, the torch will burn for (x more movements)" :
