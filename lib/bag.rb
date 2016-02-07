@@ -1,7 +1,7 @@
 class Bag
   attr_accessor :contents
 
-  def initialize(contents)
+  def initialize(contents = [])
     @contents = contents
   end
 
