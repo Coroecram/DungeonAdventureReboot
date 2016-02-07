@@ -1,13 +1,10 @@
 require 'flammable'
 
 class Torch < Flammable
-	@@identifier = 0
 	attr_accessor :timeleft, :lit
-	attr_reader :identifier
 
 	def initialize
 	  @timeleft = 10
-	  @identifier = (@@identifier += 1)
     @lit = false
 		super
 	end

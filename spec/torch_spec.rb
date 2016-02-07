@@ -33,11 +33,6 @@ RSpec.describe Torch do
         expect(@torch.lit).to eq(true)
       end
     end
-    describe '@@identifier' do
-      it 'new torch has identifier += 1' do
-        expect(Torch.new.identifier).to eq(@torch.identifier+1)
-      end
-    end
     describe '@timeleft' do
       it '@timeleft == 10' do
         expect(@torch.timeleft).to eq(10)
