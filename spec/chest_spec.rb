@@ -11,6 +11,18 @@ RSpec.describe Chest do
       end
     end
 
+    describe '@opened' do
+      it 'is closed when initialized' do
+        expect(@chest.opened).to eq(false)
+      end
+    end
+
+    describe '@contents' do
+      it 'has a Keyboard when initialized' do
+        expect(@chest.contents[0].class).to eq(Keyboard)
+      end
+    end
+
     describe '#unlock' do
       it 'can be unlocked' do
         @chest.unlock
@@ -48,7 +60,7 @@ RSpec.describe Chest do
 
       it 'returns the unlocked, empty, and closed chest description' do
         empty_and_close
-        expect(@chest.inspect).to eq("A large unlocked treasure chest with only dust inside.")
+        expect(@chest.inspect).to eq("A large unlocked treasure chest with nothing inside.")
       end
     end
 

@@ -1,7 +1,7 @@
 require 'keyboard'
 
 class Chest
-  attr_accessor :locked, :opened
+  attr_accessor :locked, :opened, :contents
 
   def initialize
     @locked = true
@@ -37,7 +37,7 @@ class Chest
         self.empty? ?  "An open treasure chest with only dust inside." :
                        "An open treasure chest with a keyboard inside."
       else
-        self.empty? ? "A large unlocked treasure chest with only dust inside." :
+        self.empty? ? "A large unlocked treasure chest with nothing inside." :
                       "A large unlocked wooden treasure chest."
       end
     end
