@@ -2,12 +2,12 @@ require 'highline'
 
 module Util
 
-	def console
-		@console ||= HighLine.new
+	def console(input = nil, output = nil)
+		HighLine.new(input, output)
 	end
 
-	def ask(question)
-		console.ask(question)
+	def ask(input, output)
+		console.ask(input, output)
 	end
 
 	def add_room(reference, description, doors, *objects)
