@@ -1,4 +1,15 @@
+require 'highline'
+
 module Util
+
+	def console
+		@console ||= HighLine.new
+	end
+
+	def ask(question)
+		console.ask(question)
+	end
+
 	def add_room(reference, description, doors, *objects)
 		@rooms << Room.new(reference, description, doors, objects)
 	end

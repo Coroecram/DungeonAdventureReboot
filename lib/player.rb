@@ -1,4 +1,5 @@
 class Player
+	
 	def clean(object)
 		if object == :bag
 			puts "You dust off your bag."

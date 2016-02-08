@@ -1,12 +1,11 @@
 class Room
-  	attr_accessor :reference, :description, :doors, :objects
+  	attr_accessor :description, :doors, :objects
 
-      def initialize(reference, description, doors, *objects)
-  	  @reference = reference
+    def initialize(description, doors, contents)
   	  @description = description
   	  @doors = doors
-  	  @objects = objects
-      end
+  	  @contents = objects
+    end
 
   def inspect
   	 "There is nothing in the room."

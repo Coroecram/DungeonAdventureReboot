@@ -8,8 +8,13 @@ class Torch < Flammable
 		super
 	end
 
-  def burn
-  	self.timeleft > 0 ? self.timeleft -= 1 : self.dead
+  def burn!
+  	if self.timeleft > 0
+			self.timeleft -= 1
+			return true
+		else
+			self.dead
+		end
   end
 
 	def dead
@@ -19,7 +24,7 @@ class Torch < Flammable
 
   def inspect
     lit ?  "By the looks of it, the torch will burn for (x more movements)" :
-          "A piece of wood with flammable resin inside.\nIt can be lit to provide a bright flame."
+           "A piece of wood with flammable resin inside.\nIt can be lit to provide a bright flame."
   end
 
   def to_s

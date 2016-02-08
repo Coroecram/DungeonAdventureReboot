@@ -45,13 +45,13 @@ RSpec.describe Torch do
 
     describe '#burn' do
       it 'timeleft -= 1 when torch burns' do
-        torch.burn
+        torch.burn!
         expect(torch.timeleft).to eq(9)
       end
 
       it "should die after 10 burns" do
         burnout
-        expect(torch.dead).to eq(true)
+        expect(torch.burn!).to be_nil
       end
 
       it "should not be lit after 10 burns" do
@@ -62,5 +62,5 @@ RSpec.describe Torch do
 end
 
 def burnout
-  10.times { torch.burn }
+  10.times { torch.burn! }
 end
