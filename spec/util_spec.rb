@@ -3,7 +3,7 @@ require 'highline'
 
 RSpec.describe Util do
   before(:all) do
-    @input = StringIO.new
+    @input  = StringIO.new
     @output = StringIO.new
   end
   let(:util) { Class.new { extend Util } }

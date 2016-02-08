@@ -3,7 +3,7 @@ class Flammable
   attr_accessor :lit
 
   def initialize
-    @lit = false
+    @lit       = false
     @flammable = true
   end
 

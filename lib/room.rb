@@ -3,8 +3,8 @@ class Room
 
     def initialize(description, doors, contents)
   	  @description = description
-  	  @doors = doors
-  	  @contents = objects
+  	  @doors       = doors
+  	  @contents    = objects
     end
 
   def inspect
